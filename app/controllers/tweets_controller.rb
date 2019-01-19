@@ -60,6 +60,10 @@ class TweetsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def confirm
+    @tweet = Tweet.new(tweet_params)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
