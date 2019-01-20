@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tweets do
+  resources :tweetaros do
     collection do
       post :confirm
     end

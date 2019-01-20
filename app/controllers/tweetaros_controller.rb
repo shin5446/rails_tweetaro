@@ -1,10 +1,10 @@
-class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+class TweetarosController < ApplicationController
+before_action :set_tweetaro, only: [:show, :edit, :update, :destroy]
 
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all
+    @tweets = Tweetaro.all
   end
 
   # GET /tweets/1
@@ -15,9 +15,9 @@ class TweetsController < ApplicationController
   # GET /tweets/new
   def new
     if params[:back]
-     @tweet = Tweet.new(tweet_params)
+     @tweet = Tweetaro.new(tweetaro_params)
     else
-     @tweet = Tweet.new
+     @tweet = Tweetaro.new
     end
   end
 
@@ -28,7 +28,7 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = Tweetaro.new(tweetaro_params)
 
     respond_to do |format|
       if @tweet.save
@@ -45,7 +45,7 @@ class TweetsController < ApplicationController
   # PATCH/PUT /tweets/1.json
   def update
     respond_to do |format|
-      if @tweet.update(tweet_params)
+      if @tweet.update(tweetaro_params)
         format.html { redirect_to @tweet, notice: 'Tweetを更新しました。' }
         format.json { render :show, status: :ok, location: @tweet }
       else
@@ -60,25 +60,25 @@ class TweetsController < ApplicationController
   def destroy
     @tweet.destroy
     respond_to do |format|
-      format.html { redirect_to tweets_url, notice: 'Tweetを削除しました。' }
+      format.html { redirect_to tweetaros_url, notice: 'Tweetを削除しました。' }
       format.json { head :no_content }
     end
   end
   
   def confirm
-    @tweet = Tweet.new(tweet_params)
+    @tweet = Tweetaro.new(tweetaro_params)
     render :new if @tweet.invalid?
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
+    def set_tweetaro
       puts "テスト#{params[:id]}"
-      @tweet = Tweet.find(params[:id])
+      @tweet = Tweetaro.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def tweet_params
-      params.require(:tweet).permit(:content)
+    def tweetaro_params
+      params.require(:tweetaro).permit(:content)
     end
 end
