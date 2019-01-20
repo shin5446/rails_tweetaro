@@ -14,7 +14,11 @@ class TweetsController < ApplicationController
 
   # GET /tweets/new
   def new
-    @tweet = Tweet.new
+    if params[:back]
+     @tweet = Tweet.new(tweet_params)
+    else
+     @tweet = Tweet.new
+    end
   end
 
   # GET /tweets/1/edit
@@ -63,11 +67,13 @@ class TweetsController < ApplicationController
   
   def confirm
     @tweet = Tweet.new(tweet_params)
+    render :new if @tweet.invalid?
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
+      puts "テスト#{params[:id]}"
       @tweet = Tweet.find(params[:id])
     end
 
