@@ -72,13 +72,13 @@ before_action :set_tweetaro, only: [:show, :edit, :update, :destroy]
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_tweetaro
+  def set_tweetaro
       puts "テスト#{params[:id]}"
       @tweet = Tweetaro.find(params[:id])
-    end
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def tweetaro_params
+  def tweetaro_params
       params.require(:tweetaro).permit(:content)
-    end
+  end
 end
